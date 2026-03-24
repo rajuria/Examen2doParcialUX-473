@@ -1,0 +1,60 @@
+post:
+  summary: Crea un registro de asistencia
+  tags: [ Atendee ]
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            id:
+              type: string
+              example: "1"
+            fullName:
+              type: string
+              example: "Rafael Ajuria"
+            email:
+              type: string
+              example: "rafael.ajuria@unitec.edu"
+            ticketType:
+              type: string
+              example: "Student"
+
+  responses:
+    '201':
+      description: Asistente registrado exitosamente
+      content:
+        application/json:
+          example:
+            status: '201'
+            data:
+              id: 1
+              fullName: "Rafael Ajuria"
+              email: "rafael.ajuria@unitec.edu"
+              ticketType: "Student"
+              createdAt: "2026-03-24T00:19:10.609Z"
+
+      '400':
+        description: id, fullName, email y ticketType son requeridos
+        content:
+          application/json:
+            example:
+              status: '400'
+              message: "id, fullName, email y ticketType son requeridos"
+      
+      '406':
+        description: ticketType debe ser Student, Professional o VIP
+        content:
+          application/json:
+            example:
+              status: '406'
+              message: "ticketType debe ser Student, Professional o VIP"
+
+      '500':
+        description: Error del servidor
+        content:
+          application/json:
+            example:
+              status: '500'
+              message: "Error del servidor"
